@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// טבלת משתמשים
+model User {
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  password String
+  role     String // הרשאות/תפקיד
+  
+  // קשר לטבלת מיקום כוחות
+  forceUpdates ForceLocation[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@map("users")
+}
+
+// טבלת מיקום כוחות
+model ForceLocation {
+  id          Int      @id @default(autoincrement())
+  LongitudePoint String
+  latitudePoint String
+  name String
+  updateDate  DateTime @default(now())
+  updatedById Int      // ID של המעדכן
+  
+  // קשר למשתמש שעדכן
+  updatedBy User @relation(fields: [updatedById], references: [id])
+  
+  createdAt DateTime @default(now())
+  
+  @@map("force_locations")
+}
+// טבלת מודיעין
+model Intelligence {
+  id          Int      @id @default(autoincrement())
+  LongitudePoint String
+  latitudePoint String
+  name        String   // הוסף שורה זו
+  createdDate DateTime @default(now())
+  riskLevel   String   // רמת סיכון (נמוך/בינוני/גבוה או 1-5)
+  description String   // תיאור המודיעין/סכנה
+  
+  createdAt DateTime @default(now())
+  
+  @@map("intelligence")
+}
