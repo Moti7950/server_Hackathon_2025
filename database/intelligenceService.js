@@ -32,7 +32,7 @@ export class IntelligenceService {
     });
     
     if (!intelligence) {
-      throw new Error('נתון מודיעין לא נמצא');
+  throw new Error('Intelligence record not found');
     }
     
     return intelligence;
@@ -42,17 +42,17 @@ export class IntelligenceService {
   async createIntelligence(longitudePoint, latitudePoint, riskLevel, description, name) {
     // Validation
     if (!longitudePoint || !latitudePoint) {
-      throw new Error('נקודות אורך ורוחב חובה');
+  throw new Error('Longitude and latitude points are required');
     }
     
     if (!riskLevel || !description) {
-      throw new Error('רמת סיכון ותיאור חובה');
+  throw new Error('Risk level and description are required');
     }
     
     // Validation לרמת סיכון
     const validRiskLevels = ['low', 'medium', 'height', '1', '2', '3', '4', '5'];
     if (!validRiskLevels.includes(riskLevel)) {
-      throw new Error(`רמת סיכון לא תקינה. רמות תקינות: ${validRiskLevels.join(', ')}`);
+  throw new Error(`Invalid risk level. Valid levels: ${validRiskLevels.join(', ')}`);
     }
     
     console.log(`🎯 יוצר נתון מודיעין עם: longitude=${longitudePoint}, latitude=${latitudePoint}, risk=${riskLevel} name=${name
@@ -73,16 +73,16 @@ export class IntelligenceService {
   async updateIntelligence(id, longitudePoint, latitudePoint, riskLevel, description) {
     // Validation
     if (!longitudePoint || !latitudePoint) {
-      throw new Error('נקודות אורך ורוחב חובה');
+  throw new Error('Longitude and latitude points are required');
     }
     
     if (!riskLevel || !description) {
-      throw new Error('רמת סיכון ותיאור חובה');
+  throw new Error('Risk level and description are required');
     }
     
     const validRiskLevels = ['נמוך', 'בינוני', 'גבוה', '1', '2', '3', '4', '5'];
     if (!validRiskLevels.includes(riskLevel)) {
-      throw new Error(`רמת סיכון לא תקינה. רמות תקינות: ${validRiskLevels.join(', ')}`);
+  throw new Error(`Invalid risk level. Valid levels: ${validRiskLevels.join(', ')}`);
     }
     
     return await prisma.intelligence.update({
@@ -102,7 +102,7 @@ export class IntelligenceService {
       where: { id: parseInt(id) }
     });
     
-    return { success: true, message: 'נתון מודיעין נמחק בהצלחה' };
+  return { success: true, message: 'Intelligence record deleted successfully' };
   }
   
   // קבלת מודיעין לפי רמת סיכון
