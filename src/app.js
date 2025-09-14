@@ -7,7 +7,7 @@ const serverIntelligenceAttack = express();
 serverIntelligenceAttack.use(express.json());
 
 serverIntelligenceAttack.use("/users", userRoute);
-//
+
 serverIntelligenceAttack.use("/locations", locationRoutes);
 
 export default serverIntelligenceAttack;
