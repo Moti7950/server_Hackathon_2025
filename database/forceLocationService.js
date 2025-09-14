@@ -52,7 +52,7 @@ export class ForceLocationService {
     });
     
     if (!location) {
-      throw new Error('מיקום כוח לא נמצא');
+  throw new Error('Force location not found');
     }
     
     return location;
@@ -62,17 +62,17 @@ export class ForceLocationService {
   async createForceLocation(longitudePoint, latitudePoint, updatedById,name) {
     // Validation
     if (!longitudePoint || !latitudePoint) {
-      throw new Error('נקודות אורך ורוחב חובה');
+  throw new Error('Longitude and latitude points are required');
     }
     
     if (!updatedById) {
-      throw new Error('מזהה מעדכן חסר');
+  throw new Error('Updater ID is required');
     }
     
     // המרה ל-Int ובדיקה
     const numericUpdatedById = parseInt(updatedById);
     if (isNaN(numericUpdatedById)) {
-      throw new Error(`מזהה מעדכן לא תקין: ${updatedById}`);
+  throw new Error(`Invalid updater ID: ${updatedById}`);
     }
     
     console.log(`🔍 יוצר מיקום כוח עם: longitude=${longitudePoint}, latitude=${latitudePoint}, updatedById=${numericUpdatedById}`);
@@ -100,12 +100,12 @@ export class ForceLocationService {
   async updateForceLocation(id, longitudePoint, latitudePoint, updatedById,name) {
     // Validation
     if (!longitudePoint || !latitudePoint) {
-      throw new Error('נקודות אורך ורוחב חובה');
+  throw new Error('Longitude and latitude points are required');
     }
     
     const numericUpdatedById = parseInt(updatedById);
     if (isNaN(numericUpdatedById)) {
-      throw new Error(`מזהה מעדכן לא תקין: ${updatedById}`);
+  throw new Error(`Invalid updater ID: ${updatedById}`);
     }
     
     return await prisma.forceLocation.update({
@@ -135,7 +135,7 @@ export class ForceLocationService {
       where: { id: parseInt(id) }
     });
     
-    return { success: true, message: 'מיקום כוח נמחק בהצלחה' };
+  return { success: true, message: 'Force location deleted successfully' };
   }
   
   // קבלת המיקומים האחרונים
