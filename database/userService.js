@@ -2,24 +2,25 @@ import { prisma } from "./neon.connect.js";
 import bcrypt from "bcrypt";
 
 export class UserService {
-  // יצירת משתמש חדש
+
+//creating an new user
   async createUser(username, password, role) {
      username = username;
      password = password;
      role = role;
 
-    // בדיקה שהמשתמש לא קיים
+     // if not exsist user
     const existingUser = await prisma.user.findUnique({
       where: { username },
     });
 
     if (existingUser) {
-      throw new Error("שם משתמש כבר קיים במערכת");
+  throw new Error("Username already exists");
     }
-
-    // הצפנת סיסמה
+// hashing password
     const hashedPassword = await bcrypt.hash(password, 12);
 
+    // creating the user in database 
     const user = await prisma.user.create({
       data: {
         username,
@@ -45,13 +46,13 @@ export class UserService {
     });
 
     if (!user) {
-      throw new Error("פרטי התחברות שגויים");
+  throw new Error("Invalid login credentials");
     }
 
     const isValidPassword = await bcrypt.compare(password, user.password);
 
     if (!isValidPassword) {
-      throw new Error("פרטי התחברות שגויים");
+  throw new Error("Invalid login credentials");
     }
 
     // החזרה ללא סיסמה
@@ -100,7 +101,7 @@ export class UserService {
     });
 
     if (!user) {
-      throw new Error("משתמש לא נמצא");
+  throw new Error("User not found");
     }
 
     return user;
@@ -140,13 +141,13 @@ export class UserService {
     });
 
     if (forceUpdatesCount > 0) {
-      throw new Error("לא ניתן למחוק משתמש עם עדכוני מיקום קיימים");
+  throw new Error("Cannot delete user with existing location updates");
     }
 
     await prisma.user.delete({
       where: { id: parseInt(id) },
     });
 
-    return { success: true, message: "משתמש נמחק בהצלחה" };
+  return { success: true, message: "User deleted successfully" };
   }
 }
