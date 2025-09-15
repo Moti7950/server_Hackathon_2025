@@ -1,4 +1,4 @@
-import { read , getOneLocation} from '../../dal/locationsDal.js'
+import { read , getOneLocation, create} from '../../dal/locationsDal.js'
 
 export default async function getLocations(req, res) {
     const result = await read('locations')
@@ -11,7 +11,7 @@ export async function addLocation(req, res) {
     if (!lat || !len || !description || !type) {
         return res.status(400).send({ message: "all fields are required" })
     }
-    const result = await addLocation('locations', description, type, lat, len)
+    const result = await create('locations', description, type, lat, len)
     res.status(201).send(`location added: ${await result}`);
 }
 
