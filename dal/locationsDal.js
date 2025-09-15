@@ -7,7 +7,7 @@ const conn = await locationsDB();
 
 // 1: collection ("locations");
 // 2: description: ("teroris in chamas");
-// 3: type: ("soldeir"  / "terorist");
+// 3: type: ("soldier"  / "terorist");
 // 4: lat: North–south position on Earth. example (342.444)
 // 5: len:  East–west position on Earth. example (382.474)
 
@@ -30,3 +30,9 @@ export async function read(collection) {
 
 }
 
+export async function getOneLocation(collection, lat, len) {
+    const { data, error } = await conn.from(collection).select('*').eq('lat', lat).eq('len', len);
+    if (error) { return error.message };
+    if (data) { return data }
+
+}
