@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "dev": "node --watch server.js",
+    "start": "node --watch server.js"
   },
   "keywords": [],
   "author": "",
@@ -23,7 +23,12 @@
   },
   "homepage": "https://github.com/Moti7950/server_Hackathon_2025#readme",
   "dependencies": {
+    "@supabase/supabase-js": "^2.57.4",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.16.3",
     "sharp": "^0.34.3"
   }
 }
