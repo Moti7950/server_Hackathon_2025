@@ -2,11 +2,10 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "App.js",
+  "main": "server.js",
   "scripts": {
     "dev": "node --watch server.js",
-    "start": "node --watch server.js",
-    "postinstall": "prisma generate"
+    "start": "node --watch server.js"
   },
   "keywords": [],
   "author": "",
