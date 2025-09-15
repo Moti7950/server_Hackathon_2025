@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Moti7950/server_Hackathon_2025#readme",
   "dependencies": {
+    "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "sharp": "^0.34.3"
   }

@@ -2,9 +2,10 @@ import fs from 'fs';
 import sharp from "sharp";
 
 const urlTest = "https://images.pexels.com/photos/36762/scarlet-honeyeater-bird-red-feathers.jpg";
+
 // Download image from URL and save to file
 async function downloadImage(url, outputPath) {
-    const response = await fetch(url); 
+    const response = await fetch(url);
     if (!response.ok) throw new Error(`Failed to fetch image: ${url}`);
     const arrayBuffer = await response.arrayBuffer();
     fs.writeFileSync(outputPath, Buffer.from(arrayBuffer));
@@ -56,8 +57,8 @@ export async function realCutImages(imagePath, outputDir) {
 }
 
 // get describe about picture 
-export async function readApi(){
-    
+export async function readApi() {
+
 }
 
 // Process the single URL from urlTest
