@@ -1,6 +1,7 @@
-// import { forceLocationService } from "../../database/index.js"
+import {read} from '../../dal/locationsDal.js'
+
 export default async function getLocations(req,res) {
-    console.log("hi from location")
-    res.status(200).send("llll")
+    const result = await read('locations')
+    res.status(200).send(await result);
     
 }
