@@ -1,6 +1,16 @@
-// import {userService }from '../../database/index.js'
-export async function getUser(req, res) {
-  console.log("hello from users");
+const users = [
+  { userName: "yosef123", password: "securePass1" },
+  { userName: "admin", password: "admin123" },
+];
 
-  res.status(200).send("nnn");
+export function checkUserExists(req, res) {
+  const { userName, password } = req.body;
+ 
+
+  const userExists = users.some(
+    // המשתמש קיים ב DB
+    (user) => user.userName === userName && user.password === password
+  );
+
+  return res.status(userExists ? 200 : 404).json({ exists: userExists });
 }
