@@ -30,4 +30,3 @@ export async function read(collection) {
 
 }
 
-console.log(await read('locations'))
