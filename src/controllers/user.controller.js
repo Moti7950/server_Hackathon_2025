@@ -1,3 +1,6 @@
+// import {userService }from '../../database/index.js'
+export async function getUser(req, res) {
+  console.log("hello from users");
 
-
-// export async function getUser((req, res)=>{})
+  res.status(200).send("nnn");
+}
