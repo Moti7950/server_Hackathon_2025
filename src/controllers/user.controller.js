@@ -1,4 +1,4 @@
-import { checkUserExist } from "../../dal/usersDal";
+import { checkUserExist } from "../../dal/usersDal.js";
 
 export function checkExists(req, res) {
   const { userName, password } = req.body;
