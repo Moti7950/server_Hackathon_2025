@@ -8,4 +8,3 @@ export async function checkUserExist(collection, username) {
     if (data) { return data };
 }           
 
-// checkUserExist('users', 'shaya');

@@ -13,9 +13,9 @@ export async function checkUser(req, res) {
   try {
     // Check if user exists in the database
     const result = await checkUserExist("users", username);
-    // If password matches, send success response, true
+    // If password matches, send success response, true + role, else send false
     if (result[0].password === password) {
-      return res.status(200).send(true);
+      return res.status(200).send({status:true,role:result[0].role});
     } else {
         res.status(200).send(false);
       }

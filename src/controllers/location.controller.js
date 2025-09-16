@@ -38,6 +38,9 @@ export async function checkIfExist(req, res) {
   try {
     // Check if location exists in the database
     const result = await getOneLocation("locations", lat, len);
+    if (result.length === 0) {
+      return res.status(200).send(false);
+    }
     res.status(200).send(result);
   } catch (error) {
     return res.status(500).send({ message: error.message });
