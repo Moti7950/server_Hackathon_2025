@@ -5,7 +5,7 @@ import * as turf from "@turf/turf";
 export default async function getLocations(req, res) {
   try {
     const result = await read("locations");
-    res.status(200).send(await result);
+    res.status(200).send(result);
   } catch (error) {
     return res.status(500).send({ message: error.message });
   }
