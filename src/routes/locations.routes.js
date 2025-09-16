@@ -1,5 +1,5 @@
 import getLocations from "../controllers/location.controller.js";
-import {addLocation,checkifexist} from '../controllers/location.controller.js'
+import {addLocation,checkIfExist} from '../controllers/location.controller.js'
 
 import { Router } from "express";
 
@@ -16,7 +16,7 @@ locationRoutes.post('/', addLocation);
 
 // this endpoint check if the location exist in the database
 
-locationRoutes.get('/:lat/:len', checkifexist)
+locationRoutes.get('/:lat/:len', checkIfExist)
 
 
 export default locationRoutes;
