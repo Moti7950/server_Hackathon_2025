@@ -3,7 +3,7 @@ import { checkUser,getAllUsers } from "../controllers/user.controller.js";
 
 const userRoutes = Router();
 
-userRoutes.post("/login", checkUser);
+userRoutes.post('/checkUser', checkUser);
 userRoutes.get("/", getAllUsers);
 
 export default userRoutes;
