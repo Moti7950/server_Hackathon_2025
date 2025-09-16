@@ -5,11 +5,12 @@
   "main": "server.js",
   "scripts": {
     "dev": "node --watch server.js",
-    "start": "node --env-file=.env --watch server.js"
+    "start": "node --watch server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "type": "module",
   "directories": {
     "test": "tests"
   },
@@ -21,9 +22,10 @@
     "url": "https://github.com/Moti7950/server_Hackathon_2025/issues"
   },
   "homepage": "https://github.com/Moti7950/server_Hackathon_2025#readme",
-  "type": "module",
   "dependencies": {
-    "@google/generative-ai": "^0.24.1",
+    "express": "^5.1.0",
+    "sharp": "^0.34.3",
+  "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
