@@ -1,7 +1,7 @@
 import fs from 'fs';
 import sharp from "sharp";
 
-const urlTest = "https://images.pexels.com/photos/36762/scarlet-honeyeater-bird-red-feathers.jpg";
+const urlTest = "https://sdmntprpolandcentral.oaiusercontent.com/files/00000000-0310-620a-bca8-2b36916ebf95/raw?se=2025-09-16T08%3A29%3A45Z&sp=r&sv=2024-08-04&sr=b&scid=6ef0e8e9-5eca-540e-b37a-236928660975&skoid=0da8417a-a4c3-4a19-9b05-b82cee9d8868&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-09-16T06%3A14%3A55Z&ske=2025-09-17T06%3A14%3A55Z&sks=b&skv=2024-08-04&sig=016yRw/9HH7r5%2BLQV0heqyiXW7Q5Q5pumce0ZJVDOQs%3D";
 
 // Download image from URL and save to file
 async function downloadImage(url, outputPath) {
@@ -40,6 +40,8 @@ export async function canvasWraper(imagePath) {
     }
     return zones;
 }
+
+
 
 // real divided picture and save
 export async function realCutImages(imagePath, outputDir) {
