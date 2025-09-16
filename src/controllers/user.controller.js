@@ -1,16 +1,8 @@
-const users = [
-  { userName: "yosef123", password: "securePass1" },
-  { userName: "admin", password: "admin123" },
-];
+import { checkUserExist } from "../../dal/usersDal";
 
-export function checkUserExists(req, res) {
+export function checkExists(req, res) {
   const { userName, password } = req.body;
- 
-
-  const userExists = users.some(
-    // המשתמש קיים ב DB
-    (user) => user.userName === userName && user.password === password
-  );
+  const userExists = checkUserExist(userName,password)
 
   return res.status(userExists ? 200 : 404).json({ exists: userExists });
 }
