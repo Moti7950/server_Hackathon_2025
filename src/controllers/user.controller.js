@@ -1,6 +1,8 @@
-// import {userService }from '../../database/index.js'
-export async function getUser(req, res) {
-  console.log("hello from users");
+import { checkUserExist } from "../../dal/usersDal";
 
-  res.status(200).send("nnn");
+export function checkExists(req, res) {
+  const { userName, password } = req.body;
+  const userExists = checkUserExist(userName,password)
+
+  return res.status(userExists ? 200 : 404).json({ exists: userExists });
 }

@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { getUser } from "../controllers/user.controller.js";
+import { checkExists } from "../controllers/user.controller.js";
 
 const userRoutes = Router();
 
-userRoutes.get("/", getUser);
+userRoutes.post('/checkUser', checkExists);
 
 export default userRoutes;
