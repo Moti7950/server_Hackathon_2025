@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addNewSuspiciousPoint, getAllSuspiciousPoints } from "../controllers/Suspicious.controller.js";
+import { addNewSuspiciousPoint, getAllSuspiciousPoints } from "../controllers/suspicious.controller.js";
 
 // Router for suspicious points endpoints
 const SuspiciousRouter = Router();
