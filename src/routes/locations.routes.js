@@ -1,4 +1,4 @@
-import getLocations, { checkArea } from "../controllers/location.controller.js";
+import getLocations, { checkArea ,getPointsInRadius} from "../controllers/location.controller.js";
 import {
   addLocation,
   checkIfExist,
@@ -18,6 +18,8 @@ locationRoutes.post("/", addLocation);
 // This endpoint checks if any locations exist inside a given polygon
 // The polygon should be sent in the request body in GeoJSON format
 locationRoutes.post("/area", checkArea);
+
+locationRoutes.get("/zeek/radius/:lat/:len", getPointsInRadius);
 
 // this endpoint check if the location exist in the database
 

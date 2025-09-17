@@ -76,3 +76,46 @@ export async function checkArea(req, res) {
     return res.status(500).send({ message: error.message });
   }
 }
+
+// Function to get all locations within a certain radius of a given point
+export async function getPointsInRadius(req, res) {
+  const { lat, len } = req.params;
+  console.log(lat, len);
+  const searchRadius = 300;
+  // Validate input
+  if (!lat || !len) {
+    return res.status(400).send({ message: "all fields are required" });
+  }
+
+  try {
+    // Get all locations from the database
+    const allLocations = await read("locations");
+    // Filter locations within the specified radius
+    const centerLat = parseFloat(lat);
+    const centerLen = parseFloat(len);
+    
+     const locationsInRadius = allLocations.filter(location => {
+      const distance = calculateDistance(centerLat, centerLen, location.lat, location.len);
+      return distance <= searchRadius;
+      
+    });
+    res.status(200).send( locationsInRadius
+    );
+
+
+  } catch (error) {
+    return res.status(500).send({ message: error.message });
+  }
+}
+
+function calculateDistance(lat1, len1, lat2, len2) {
+  const R = 6371000; // רדיוס כדור הארץ במטרים
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLen = (len2 - len1) * Math.PI / 180;
+  const a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+    Math.sin(dLen/2) * Math.sin(dLen/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return R * c; // מרחק במטרים
+}
