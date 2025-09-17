@@ -1,4 +1,3 @@
-import fs from "fs";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import dotenv from 'dotenv';
 import path from 'path';
@@ -10,18 +9,18 @@ dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
 const apiKey = process.env.API_KEY;
 
-export async function describeTile() {
+ 
+export async function describePicture(inputPictureFormatB64) {
   try {
     const filePath = "./output/image_test.png";
-    const b64 = fs.readFileSync(filePath).toString("base64");
-
+    
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     const result = await model.generateContent([
       { text: "מה מופיע בתמונה הזאת ואם התמונה מורכבת מכמה תמונות אז תתיחס לכל תמונה בפרד ואם יש קונטקס מארגן או כמה קונטקסטים מארגנים בין כמה תמונות או בין כל התמונות אז תכתוב בסוף את הקונטקסטים המארגנים אבלל אחרי שנתת הסבר מה יש בכל תמונה בנפרד ? תענה בעברית בלבד." },
       {
         inlineData: {
-          data: b64,
+          data: inputPictureFormatB64,
           mimeType: "image/png"
         }
       }
@@ -33,13 +32,13 @@ export async function describeTile() {
 }
 
 
-export async function fixText() {
-  let textOutput = await describeTile();
+export async function fixText(inputPictureFormatB64) {
+  let textOutput = await describePicture(inputPictureFormatB64);
   let counter = 0;
 
   while (!textOutput) {
     console.log("The system is trying, please wait a few moments.");
-    textOutput = await describeTile();
+    textOutput = await describePicture(inputPictureFormatB64);
     counter++;
     if (counter >=9) {
       console.log("we are sorry but the api error");
