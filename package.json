@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/Moti7950/server_Hackathon_2025#readme",
   "dependencies": {
-
+    "@google/generative-ai": "^0.24.1",
     "@supabase/supabase-js": "^2.57.4",
     "@turf/turf": "^7.2.0",
     "bcrypt": "^6.0.0",
